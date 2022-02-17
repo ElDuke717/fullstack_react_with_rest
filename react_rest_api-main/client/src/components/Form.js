@@ -22,35 +22,35 @@ const Form = (props) => {
 
   return (
     <div>
-      <ErrorsDisplay errors={errors} />
+      {/* <ErrorsDisplay errors={errors} /> */}
       <form onSubmit={handleSubmit}>
         {elements()}
         <div className="pad-bottom">
           <button className="button" type="submit">{submitButtonText}</button>
-          <button className="button button-secondary" onClick={<Navigate to="/courses" replace = {true}/>}>Cancel</button>
+          {/* <button className="button button-secondary" onClick={<Navigate to="/courses" replace = {true}/>}>Cancel</button> */}
         </div>
       </form>
     </div>
   );
 }
 
-function ErrorsDisplay({ errors }) {
-  let errorsDisplay = null;
+// function ErrorsDisplay({ errors }) {
+//   let errorsDisplay = null;
 
-  if (errors.length) {
-    errorsDisplay = (
-      <div>
-        <h2 className="validation--errors--label">Validation errors</h2>
-        <div className="validation-errors">
-          <ul>
-            {errors.map((error, i) => <li key={i}>{error}</li>)}
-          </ul>
-        </div>
-      </div>
-    );
-  }
+//   if (errors.length) {
+//     errorsDisplay = (
+//       <div>
+//         <h2 className="validation--errors--label">Validation errors</h2>
+//         <div className="validation-errors">
+//           <ul>
+//             {errors.map((error, i) => <li key={i}>{error}</li>)}
+//           </ul>
+//         </div>
+//       </div>
+//     );
+//   }
 
-  return errorsDisplay;
-}
+//   return errorsDisplay;
+// }
 
 export default Form;
