@@ -60,7 +60,7 @@ export default function CreateCourse() {
                         </ul> 
                     </div> 
                 : null }
-                <form onSubmit={handleSubmit}>
+                <form >
                     <div className="main--flex">
                         <div>
                             <label htmlFor="courseTitle">Course Title</label>
@@ -105,7 +105,7 @@ export default function CreateCourse() {
                             />
                         </div>
                     </div>
-                    <button className="button" type="submit">Create Course</button>
+                    <button className="button" type="submit" onClick={handleSubmit}>Create Course</button>
                     <button className="button button-secondary">
                     <Link to="/">Cancel</Link> </button>
                     </form>  

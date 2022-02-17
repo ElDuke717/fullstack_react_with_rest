@@ -16,18 +16,24 @@ const Form = (props) => {
   }
 
   function handleCancel(event) {
-    event.preventDefault();
-    cancel();
+    // event.preventDefault();
+    // cancel();
+    console.log('garbage');
   }
 
   return (
     <div>
       {/* <ErrorsDisplay errors={errors} /> */}
-      <form onSubmit={handleSubmit}>
+      <form >
+      {/* Elements are passed through props and are used to add the input fields */}
         {elements()}
         <div className="pad-bottom">
-          <button className="button" type="submit">{submitButtonText}</button>
-          {/* <button className="button button-secondary" onClick={<Navigate to="/courses" replace = {true}/>}>Cancel</button> */}
+          {/* I changed onSubmit for the form to onClick for handleSubmit below */}
+          <button className="button" type="submit" onClick={handleSubmit}>{submitButtonText}</button>
+          {/* This is where the CANCEL button is on the FORM.  We need to figure out how to connect it with handleCancel and ultimately with the cancel feature. i
+          In the Authorization project, cancel is a function passed through props to handleCancel and it pushes routing to the history object.*/}
+          <button className="button button-secondary" onClick={ console.log('CANCEL!')          }
+          >Cancel</button>
         </div>
       </form>
     </div>
