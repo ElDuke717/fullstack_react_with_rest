@@ -1,85 +1,45 @@
 import React, { 
-  useState 
+  useState,
+  // useEffect 
 } from 'react';
-import { Link, 
-    Navigate
-    } from 'react-router-dom';
-import Form from './Form';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 //import Context from './Context'
 
 
 
 export default function UserSignUp() {
     // const context = useContext(Context.Context);
-    console.log('chicken hearts')
     // let history = useHistory(); //Navigate is used in place of useHistory() 
   
   const [firstName, setfirstName] = useState('');
   const [lastName, setlastName] = useState('');
-  const [email, setEmail] = useState('');
+  const [emailAddress, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
-  console.log('chicken tenders')
-  // const change = (event) => {
-  //   const value = event.target.value;
-  //   switch (event.target.firstName) {
-  //     case "firstName":
-  //       setfirstName(value);
-  //       break;
-  //     case "lastName":
-  //       setlastName(value);
-  //       break;
-  //     case "email":
-  //       setEmail(value);
-  //       break;
-  //     case "password":
-  //       setPassword(value);
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  // }
-    
-  console.log('chicken fingers')
 
   let handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('cereal');
-    try {
-        const response = await fetch('http://localhost:5000/api/courses', {
-            method: 'POST',
-            body: JSON.stringify({
-                firstName,
-                lastName,
-                email,
-                password,
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        console.log(response);
-        console.log(firstName);
-        console.log('sausage');
-        const json = await response.json();
-        console.log(json);
-        console.log(errors);
-        if (json.errors) {
-            console.log('chicken in a biscuit');
-            setErrors(json.errors);
-            console.log('oatmeal');
-        } else {
-            setfirstName('');
-            setlastName('');
-            setEmail('');
-            setPassword('');
-            setErrors([]);
+    e.preventDefault();   
+        const userData = {
+          firstName,
+          lastName,
+          emailAddress,
+          password,            
         }
-    } catch (err) {
-        console.error(err);
-        console.log('pancakes');
-    }
-}
+        console.log(userData);   
+        try {
+          await axios.post('http://localhost:5000/api/users', userData)
+          .then(response => {
+            console.log(response.status);
+          })
+          } catch (error) {
+            console.log(error.message)
+            //console.log('Here are the errors: ' + error.response.data.errors)
+            //Errors are provided by the API and via the response.data.errors object.  setErrors pushes them onto the state.
+            setErrors(error.response.data.errors)
+          }         
+  }
+    
 
     // context.data.createUser(user)
     //   .then( errors => {
@@ -101,16 +61,27 @@ export default function UserSignUp() {
     //   context.history.push('/');
     //  }
   
-    console.log('french fries')
+  
       return (
         <div className="form--centered">
           <div className="grid-33 centered signin">
             <h2>Sign Up</h2>
+               {/* Conditional logic that displays errors. Errors are passed in from state and map is used to print them to the screen */}
+              { errors.length > 0 && (
+                <div className="validation--errors">
+                  <h3>Validation Errors</h3>
+                  <ul>
+                    {errors.map((error, i) => {
+                      return <li key={i}>{error}</li>
+                    })}
+                    </ul>
+                </div>)}
             <form>
               {/* //cancel={cancel}
               //errors={errors}
               //submit={submit}
               submitButtonText="Sign Up" */}
+              
               
                   <label htmlFor="firstName">First Name</label>
                   <input 
@@ -135,7 +106,7 @@ export default function UserSignUp() {
                     id="emailAddress" 
                     name="emailAddress" 
                     type="text"
-                    value={email}  
+                    value={emailAddress}  
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email Address" />
                   
