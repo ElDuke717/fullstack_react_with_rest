@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-//import Data from './Data';
+// Data helper class from Data.js
+import Data from './Data';
 
 export const Context = React.createContext(); 
 
@@ -12,20 +13,18 @@ export class Provider extends Component {
 
   constructor() {
     super();
-    //this.data = new Data();
+    //initialize a new instance of the Data class inside the constructor
+    this.data = new Data();
   }
 
   render() {
-    const { authenticatedUser } = this.state;
-    const value = {
-      authenticatedUser,
-      data: this.data,
-      actions: {
-        signIn: this.signIn,
-        signOut: this.signOut
-      },
+    //value is an object that contains a data property set to the data.
+    const value = { data: this.data,
     };
     return (
+      //Context.Provider provides the data that needs to be consumed by the consuming components or children.
+      //Provider class is a higher order component that returns a Provider component that provides the application state and
+      //actions or event handlers that need to be shared between components via the value prop.
       <Context.Provider value={value}>
         {this.props.children}
       </Context.Provider>  
@@ -33,25 +32,12 @@ export class Provider extends Component {
   }
 
   
-  signIn = async (username, password) => {
-    const user = await this.data.getUser(username, password);
-    if (user !== null) {
-      this.setState(() => {
-        return {
-          authenticatedUser: user,
-        };
-      });
-      const cookieOptions = {
-        expires: 1 // 1 day
-      };
-      Cookies.set('authenticatedUser', JSON.stringify(user), {cookieOptions});
-    }
-    return user;
+  signIn = async () => {
+
   }
 
   signOut = () => {
-    this.setState({ authenticatedUser: null });
-    Cookies.remove('authenticatedUser');
+
   }
 }
 
@@ -62,8 +48,8 @@ export const Consumer = Context.Consumer;
  * @param {class} Component - A React component.
  * @returns {function} A higher-order component.
  */
-
- export function withContext(Component) {
+//It automatically subscribes or connects the component passed to it to all actions and context changes. 
+export default function withContext(Component) {
   return function ContextComponent(props) {
     return (
       <Context.Consumer>
@@ -72,5 +58,3 @@ export const Consumer = Context.Consumer;
     );
   }
 }
-
-export default {withContext, Context}

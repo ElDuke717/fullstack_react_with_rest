@@ -251,6 +251,14 @@ input:focus, button:focus, .button:focus, textarea:focus {
     border-radius: 0;
     outline: 2px solid #332a40;
 }
+.serious { 
+    background: #e9e5f0; 
+    color: hsl(0, 100%, 50%, 1);
+    font-size: 2rem;
+    font-weight: 300;
+    border:hsla(263, 20%, 36%, 1) 1px solid;
+    border-radius: 5px;;
+}
 
 @media screen and (min-width: 600px) {
     .header--signedin li {
