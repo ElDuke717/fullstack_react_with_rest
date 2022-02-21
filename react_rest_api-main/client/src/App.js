@@ -4,7 +4,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Routes,
+  Switch,
 } from 'react-router-dom';
 
 //import app elements
@@ -31,7 +31,7 @@ function App() {
     <Router>
       <div> 
       <Header />
-      <Routes>
+      <Switch>
         <Route exact path="/" element={<Courses/>} />
         <Route path="/courses" element={<Courses/>} />
         <Route path="/courses/:id" element={<CourseDetail />} />
@@ -43,7 +43,7 @@ function App() {
         <Route path="/signout" element={<UserSignOut/>} />
         <Route path="/deletecourse" element={<DeleteCourse/>} />
         <Route path="*" element={<NotFound/>} />
-      </Routes>  
+      </Switch>  
       </div>
     </Router>
   );
