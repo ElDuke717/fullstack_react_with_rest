@@ -1,6 +1,7 @@
 import React, { 
   useState,
-  // useEffect 
+  useEffect,
+  useContext
 } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -8,8 +9,8 @@ import axios from 'axios';
 
 
 
-export default function UserSignUp() {
-    // const context = useContext(Context.Context);
+export default function UserSignUp(props) {
+    //const context = useContext();
     // let history = useHistory(); //Navigate is used in place of useHistory() 
   
   const [firstName, setfirstName] = useState('');
@@ -26,6 +27,13 @@ export default function UserSignUp() {
           emailAddress,
           password,            
         }
+
+        const { context } = props;
+        console.log(context);
+        console.log(props);
+        // useEffect( () => {
+        //   console.log()
+        // }, [])
         console.log(userData);   
         try {
           await axios.post('http://localhost:5000/api/users', userData)
@@ -69,7 +77,7 @@ export default function UserSignUp() {
                {/* Conditional logic that displays errors. Errors are passed in from state and map is used to print them to the screen */}
               { errors.length > 0 && (
                 <div className="validation--errors">
-                  <h3>Validation Errors</h3>
+                  <h3>Error- please add the following information</h3>
                   <ul>
                     {errors.map((error, i) => {
                       return <li key={i}>{error}</li>
@@ -129,5 +137,7 @@ export default function UserSignUp() {
           </div>
         </div>
       );
+
+  
 }
   
