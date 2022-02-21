@@ -2,7 +2,7 @@ import config from './config';
 
 export default class Data {
   api(path, method = 'GET', body = null) {
-    //const url configures the URL path using the base URL defined in config.js
+    //const url configures the URL path using the base URL defined in config.js 
     const url = config.apiBaseUrl + path;
     
     //options is an object that sends a request with the HTTP method (GET, POST, etc.) and request headers as a stringified body.
