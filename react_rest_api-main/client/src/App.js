@@ -32,17 +32,17 @@ function App() {
       <div> 
       <Header />
       <Switch>
-        <Route exact path="/" element={<Courses/>} />
-        <Route path="/courses" element={<Courses/>} />
-        <Route path="/courses/:id" element={<CourseDetail />} />
-        <Route path="/create" element={<CreateCourse/>} />
-        <Route path="/courses/:id/update" element={<UpdateCourse/>} />
+        <Route exact path="/" render={()=><Courses/>} />
+        <Route path="/courses" render={()=><Courses/>} />
+        <Route path="/courses/:id" render={()=><CourseDetail />} />
+        <Route path="/create" render={()=><CreateCourse/>} />
+        <Route path="/courses/:id/update" render={()=><UpdateCourse/>} />
         {/* Adding UserSignUpWithContext in the place of <UserSignUp /> allows UserSignUp to use the value passed by Provider */}
-        <Route path="/signin" element={UserSignUpWithContext} />
-        <Route path="/signup" element={<UserSignUp/>} />
-        <Route path="/signout" element={<UserSignOut/>} />
-        <Route path="/deletecourse" element={<DeleteCourse/>} />
-        <Route path="*" element={<NotFound/>} />
+        <Route path="/signin" render={()=>UserSignUpWithContext} />
+        <Route path="/signup" render={()=><UserSignUp/>} />
+        <Route path="/signout" render={()=><UserSignOut/>} />
+        <Route path="/deletecourse" render={()=><DeleteCourse/>} />
+        <Route path="*" render={()=><NotFound/>} />
       </Switch>  
       </div>
     </Router>

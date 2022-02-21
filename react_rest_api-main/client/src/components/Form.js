@@ -53,4 +53,3 @@ function ErrorsDisplay({ errors }) {
   return errorsDisplay;
 }
 
-;
