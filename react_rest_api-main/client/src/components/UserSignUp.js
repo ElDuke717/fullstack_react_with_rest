@@ -31,9 +31,9 @@ export default function UserSignUp(props) {
         const { context } = props;
         console.log(context);
         console.log(props);
-        // useEffect( () => {
-        //   console.log()
-        // }, [])
+        useEffect( () => {
+          console.log()
+        }, [])
         console.log(userData);   
         try {
           await axios.post('http://localhost:5000/api/users', userData)
