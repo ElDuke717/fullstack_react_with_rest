@@ -14,7 +14,7 @@ export default class UserSignIn extends Component  {
     const {
       emailAddress,
       password,
-      errors,
+      //errors,
     } = this.state
   
   

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Cookies from 'js-cookie';
 // Data helper class from Data.js
 import Data from './Data';
 
@@ -7,19 +6,17 @@ export const Context = React.createContext();
 
 export class Provider extends Component {
 
-  state = {
-    authenticatedUser: Cookies.getJSON('authenticatedUser') || null
-  };
-
   constructor() {
     super();
     //initialize a new instance of the Data class inside the constructor
     this.data = new Data();
+    console.log(this.data)
   }
 
   render() {
     //value is an object that contains a data property set to the data.
-    const value = { data: this.data,
+    const value = { 
+      data: this.data,
     };
     return (
       //Context.Provider provides the data that needs to be consumed by the consuming components or children.

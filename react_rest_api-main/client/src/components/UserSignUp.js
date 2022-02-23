@@ -91,28 +91,36 @@ export default class UserSignUp extends Component {
           password
       } = this.state
 
+      //Create a user that will get passed to context.data.createUser and ultimately to the api.
         const user = { 
           firstName, 
           lastName,
           emailAddress,
           password
         }
-        console.log(this.props)
-        //Creates a new user using the createUser method in Data.js - user is passed as an argument and is the object  holds 
-        //the user's information.
-        context.data.createUser(user)
-        .then( errors => {
-          if (errors.length) {
-            this.setState({ errors });
-          } else {
-            //If the response from Data.js returns no errors or an empty array, it means the user was created successfully.
-            console.log(`${firstName} ${lastName} has been created!`);
-            };
-          })
-          .catch( err => { //handle rejected promises
-            console.log(err);
-            this.props.history.push('/error'); //push the error to the history stack and render the error page
-          });
+
+        console.log('this.state: ', this.state);
+        console.log('user:', user);
+        console.log('this.props: ', this.props);
+        console.log('context: ', context);
+        
+    //there's something wrong with the connection between context and data - it makes the app crash when you try to access it.
+    //Creates a new user using the createUser method in Data.js - user is passed as an argument and is the object  holds 
+    //the user's information.
+    
+        // context.data.createUser(user)
+        // .then( errors => {
+        //   if (errors.length) {
+        //     this.setState({ errors });
+        //   } else {
+        //     //If the response from Data.js returns no errors or an empty array, it means the user was created successfully.
+        //     console.log(`${firstName} ${lastName} has been created!`);
+        //     };
+        //   })
+        //   .catch( err => { //handle rejected promises
+        //     console.log(err);
+        //     this.props.history.push('/error'); //push the error to the history stack and render the error page
+        //   });
       }
     
       cancel = () => {
