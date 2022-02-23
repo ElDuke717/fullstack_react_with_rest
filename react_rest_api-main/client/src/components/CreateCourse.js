@@ -1,3 +1,4 @@
+// We will need to use useContext for this component OR convert it to a Class componet.
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ export default function CreateCourse() {
     const [materialsNeeded, setMaterialsNeeded] = useState('');
     const [errors, setErrors] = useState([]);
     
+
     let handleSubmit = async (e) => {
         e.preventDefault();
         console.log('cereal');
