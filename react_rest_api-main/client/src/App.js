@@ -21,21 +21,22 @@ import NotFound from './components/NotFound';
 import withContext from './Context';
 
 //Connect UserSignUp component to Context
+const HeaderWithContext = withContext(Header);
 const UserSignUpWithContext = withContext(UserSignUp);
+const UserSignInWithContext = withContext(UserSignIn);
 
 export default () => (
     <Router>
       <div> 
-      <Header />
+      <HeaderWithContext />
       <Switch>
         <Route exact path="/" component={()=><Courses/>} />
         <Route path="/courses/:id" component={()=><CourseDetail />} />
         <Route path="/courses" component={()=><Courses/>} />        
         <Route path="/create" component={()=><CreateCourse/>} />
         <Route path="/courses/:id/update" component={()=><UpdateCourse/>} />
-        {/* Adding UserSignUpWithContext in the place of <UserSignUp /> allows UserSignUp to use the value passed by Provider */}
-        
-        <Route exact path="/signin" component={() => <UserSignIn/>}/>
+        <Route exact path="/signin" component={UserSignInWithContext} /> 
+         {/* Adding UserSignUpWithContext in the place of <UserSignUp /> allows UserSignUp to use the value passed by Provider */}
         <Route path="/signup" component={UserSignUpWithContext} />
         <Route path="/signout" component={()=><UserSignOut/>} />
         <Route path="/deletecourse" component={()=><DeleteCourse/>} />

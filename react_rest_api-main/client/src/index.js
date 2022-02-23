@@ -11,7 +11,7 @@ import './styles/reset.css';
 import './styles/global.css';
 
 
-
+//Provider wraps the entire app so that context is available to all components.
 ReactDOM.render(
   <React.StrictMode>
   <Provider>

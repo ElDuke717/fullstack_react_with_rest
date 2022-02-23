@@ -6,6 +6,11 @@ export const Context = React.createContext();
 
 export class Provider extends Component {
 
+  state = {
+    // default state of authenticated user is set to null, for establishing the name in the header
+    authenticatedUser: null
+  };
+
   constructor() {
     super();
     //initialize a new instance of the Data class inside the constructor
@@ -14,9 +19,18 @@ export class Provider extends Component {
   }
 
   render() {
+    // authenticated user is pulled out of state
+    const { authenticatedUser } = this.state;
+    
     //value is an object that contains a data property set to the data.
-    const value = { 
+    const value = {
+      // authenticatedUser's state is added to value, which  is passed to the context provider.
+      authenticatedUser,
       data: this.data,
+      // actions are functions that are passed down to the children components through value as part of the context.
+      actions: {
+        signIn: this.signIn,
+       }
     };
     return (
       //Context.Provider provides the data that needs to be consumed by the consuming components or children.
@@ -28,9 +42,17 @@ export class Provider extends Component {
     );
   }
 
-  
-  signIn = async () => {
-
+  // Sign-in is reflected in the header component by changing the authenticatedUser state.
+  signIn = async (emailAddress, password) => {
+    const user = await this.data.getUser(emailAddress, password);
+    if (user !== null) {
+      this.setState(() => {
+        return {
+          authenticatedUser: user,
+        };
+      });
+    }
+    return user;
   }
 
   signOut = () => {
