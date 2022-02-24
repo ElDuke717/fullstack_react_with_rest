@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { Consumer } from './Context';
 
+// PrivateRoute component is a high-order component for protecting routes.
+// Component is destructed and renamed, all other props passed are passed via the ...rest variable
 export default ({ component: Component, ...rest }) => {
   return (
     <Consumer>

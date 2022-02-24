@@ -15,7 +15,6 @@ export class Provider extends Component {
     super();
     //initialize a new instance of the Data class inside the constructor
     this.data = new Data();
-    console.log(this.data)
   }
 
   render() {
@@ -30,6 +29,7 @@ export class Provider extends Component {
       // actions are functions that are passed down to the children components through value as part of the context.
       actions: {
         signIn: this.signIn,
+        signOut: this.signOut,
        }
     };
     return (
@@ -55,8 +55,13 @@ export class Provider extends Component {
     return user;
   }
 
+  // Sign-out removes the emailAddress and password from the state.
   signOut = () => {
-
+    this.setState(() => {
+      return {
+        authenticatedUser: null,
+      };
+    });
   }
 }
 

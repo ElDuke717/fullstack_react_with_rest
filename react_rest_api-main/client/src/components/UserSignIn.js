@@ -77,7 +77,7 @@ export default class UserSignIn extends Component  {
             return { errors: ['Invalid username or password'] };
           });
         } else { 
-          // is sign-in is successful, redirect to the home page
+          // if sign-in is successful, redirect to the home page
           this.props.history.push('/');
           console.log(`sign-in successful, ${user.firstName} ${user.lastName} is signed in!`);
         }

@@ -1,10 +1,8 @@
-// We will need to use useContext for this component OR convert it to a Class componet.
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Form from './Form';
 
 export default class CreateCourse extends Component {
-    
+   
    state = { 
         title:'',
         description:'',
@@ -14,6 +12,11 @@ export default class CreateCourse extends Component {
    }
 
     render() {
+        const { context } = this.props;
+        const authUser = context.authenticatedUser;
+        console.log(context);
+        console.log(authUser);
+
         const { 
             title, 
             description,
@@ -23,6 +26,7 @@ export default class CreateCourse extends Component {
 
     return (
         <div className="wrap">
+            <h1>{authUser.firstName} is logged in</h1>
             <h2>Create Course</h2>
             <Form 
             cancel={this.cancel}

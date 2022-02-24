@@ -20,16 +20,17 @@ import NotFound from './components/NotFound';
 //import withContext function from Context.js
 import withContext from './Context';
 
-//import private route for protected routes
+//import PrivateRoute for protected routes
 import PrivateRoute from './PrivateRoute';
 
 //Connect UserSignUp component to Context
 const HeaderWithContext = withContext(Header);
-//Does it matter if this component was written as a Function Component?  That's why it's yellow instead of green.
 const CreateWithAuthentication = withContext(CreateCourse);
 const UpdateWithAuthentication = withContext(UpdateCourse);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
+// const CourseWithAuthentication = withContext(Courses);
+const UserSignOutWithContext = withContext(UserSignOut);
 
 export default () => (
     <Router>
@@ -44,7 +45,7 @@ export default () => (
         <Route exact path="/signin" component={UserSignInWithContext} /> 
          {/* Adding UserSignUpWithContext in the place of <UserSignUp /> allows UserSignUp to use the value passed by Provider */}
         <Route path="/signup" component={UserSignUpWithContext} />
-        <Route path="/signout" component={()=><UserSignOut/>} />
+        <Route path="/signout" component={UserSignOutWithContext} />
         <Route path="/deletecourse" component={()=><DeleteCourse/>} />
         <Route path="*" component={()=><NotFound/>} />
       </Switch>  
