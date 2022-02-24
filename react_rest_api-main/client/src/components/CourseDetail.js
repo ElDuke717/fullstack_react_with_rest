@@ -26,7 +26,7 @@ const CourseDetail = (props) => {
   //useEffect is called after the component is rendered and allows the axios fetch request to complete before it proceeds. 
   useEffect(() => {
       getData();
-  },);
+  },[]);
   
   
     return (

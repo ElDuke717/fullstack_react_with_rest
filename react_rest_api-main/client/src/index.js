@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from './components/Context/Context'
+import { Provider } from './Context'
 
 
 import './index.css';
@@ -11,12 +11,12 @@ import './styles/reset.css';
 import './styles/global.css';
 
 
-
+//Provider wraps the entire app so that context is available to all components.
 ReactDOM.render(
   <React.StrictMode>
-  {/* <Provider> */}
+  <Provider>
     <App />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

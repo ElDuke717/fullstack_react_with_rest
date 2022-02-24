@@ -15,7 +15,7 @@ export default class UpdateCourse extends Component {
             description,
             estimatedTime,
             materialsNeeded,
-            errors,
+            //errors,
         } = this.state;
 
     return (

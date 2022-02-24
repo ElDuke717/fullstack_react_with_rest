@@ -1,143 +1,131 @@
-import React, { 
-  useState,
-  useEffect,
-  useContext
-} from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-//import Context from './Context'
+import Form from './Form'
 
+//state - firstName, lastName, emailAddress, password, errors
 
-
-export default function UserSignUp(props) {
-    //const context = useContext();
-    // let history = useHistory(); //Navigate is used in place of useHistory() 
-  
-  const [firstName, setfirstName] = useState('');
-  const [lastName, setlastName] = useState('');
-  const [emailAddress, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
-
-  let handleSubmit = async (e) => {
-    e.preventDefault();   
-        const userData = {
-          firstName,
+export default class UserSignUp extends Component {
+    state = { 
+      firstName:'',
+      lastName:'',
+      emailAddress:'',
+      password:'',
+      errors:[]
+    }
+    
+    render() {
+      const {
+        firstName, 
+        lastName, 
+        emailAddress, 
+        password, 
+        errors} = this.state;
+    
+        return (
+          <div className="form--centered">
+            <div className="grid-33 centered signin">
+              <h1>Sign Up</h1>
+              <Form 
+                cancel={this.cancel}
+                errors={errors}
+                submit={this.submit}
+                submitButtonText="Sign Up"
+                elements={() => (
+                  <React.Fragment>
+                    <input 
+                      id="firstName" 
+                      name="firstName" 
+                      type="text"
+                      value={firstName} 
+                      onChange={this.change} 
+                      placeholder="First Name" />
+                      <input 
+                      id="lastName" 
+                      name="lastName" 
+                      type="text"
+                      value={lastName} 
+                      onChange={this.change} 
+                      placeholder="Last Name" />
+                    <input 
+                      id="emailAddress" 
+                      name="emailAddress" 
+                      type="text"
+                      value={emailAddress} 
+                      onChange={this.change} 
+                      placeholder="Email Address" />
+                    <input 
+                      id="password" 
+                      name="password"
+                      type="password"
+                      value={password} 
+                      onChange={this.change} 
+                      placeholder="Password" />
+                  </React.Fragment>
+                )} />
+              <p>
+                Already have a user account? <Link to="/signin">Click here</Link> to sign in!
+              </p>
+            </div>
+          </div>
+        );
+      }
+    
+      change = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+    
+        this.setState(() => {
+          return {
+            [name]: value
+          };
+        });
+      }
+    
+      submit = () => {
+        const { context } = this.props;
+        
+        const { 
+          firstName, 
           lastName,
           emailAddress,
-          password,            
+          password
+      } = this.state
+
+      //Create a user that will get passed to context.data.createUser and ultimately to the api.
+        const user = { 
+          firstName, 
+          lastName,
+          emailAddress,
+          password
         }
 
-        const { context } = props;
-        console.log(context);
-        console.log(props);
-        // useEffect( () => {
-        //   console.log()
-        // }, [])
-        console.log(userData);   
-        try {
-          await axios.post('http://localhost:5000/api/users', userData)
-          .then(response => {
-            console.log(response.status);
-          })
-          } catch (error) {
-            console.log(error.message)
-            //console.log('Here are the errors: ' + error.response.data.errors)
-            //Errors are provided by the API and via the response.data.errors object.  setErrors pushes them onto the state.
-            setErrors(error.response.data.errors)
-          }         
-  }
+        console.log('this.state: ', this.state);
+        console.log('user:', user);
+        console.log('this.props: ', this.props);
+        console.log('context: ', context);
+        
+    //there's something wrong with the connection between context and data - it makes the app crash when you try to access it.
     
+    //Creates a new user using the createUser method in Data.js - user is passed as an argument and is the object  holds 
+    //the user's information.
 
-    // context.data.createUser(user)
-    //   .then( errors => {
-    //     if (errors.length) {
-    //       setErrors(errors);
-    //     } else {
-    //       context.actions.signIn(email, password)
-    //       .then(() => {
-    //       history.push('/authenticated');
-    //     });
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    //  // context.history.push('/error');
-    // });
-
-    // const cancel = () => {
-    //   context.history.push('/');
-    //  }
-  
-  
-      return (
-        <div className="form--centered">
-          <div className="grid-33 centered signin">
-            <h2>Sign Up</h2>
-               {/* Conditional logic that displays errors. Errors are passed in from state and map is used to print them to the screen */}
-              { errors.length > 0 && (
-                <div className="validation--errors">
-                  <h3>Error- please add the following information</h3>
-                  <ul>
-                    {errors.map((error, i) => {
-                      return <li key={i}>{error}</li>
-                    })}
-                    </ul>
-                </div>)}
-            <form>
-              {/* //cancel={cancel}
-              //errors={errors}
-              //submit={submit}
-              submitButtonText="Sign Up" */}
-              
-              
-                  <label htmlFor="firstName">First Name</label>
-                  <input 
-                    id="firstName" 
-                    name="firstName" 
-                    type="text"
-                    value={firstName} 
-                    onChange={(e) => setfirstName(e.target.value)}
-                    placeholder="First Name" />
-                    
-                  <label htmlFor="lastName">Last Name</label>
-                    <input 
-                    id="lastName" 
-                    name="lastName" 
-                    type="text"
-                    value={lastName} 
-                    onChange={(e) => setlastName(e.target.value)}
-                    placeholder="Last Name" />
-                  
-                  <label htmlFor="email">Email</label>
-                  <input 
-                    id="emailAddress" 
-                    name="emailAddress" 
-                    type="text"
-                    value={emailAddress}  
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email Address" />
-                  
-                  <label htmlFor="password">Password</label>
-                  <input 
-                    id="password" 
-                    name="password"
-                    type="password"
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password" />
-                <button className="button" type="submit" onClick={handleSubmit}>Sign Up</button>
-                <button className="button button-secondary">
-                    <Link to="/">Cancel</Link> </button>
-            
-              </form>
-            <p>
-              Already have a user account? <Link to="/signin">Click here</Link> to sign in!
-            </p>
-          </div>
-        </div>
-      );
-
-  
-}
+      context.data.createUser(user)
+      .then( errors => {
+        if (errors.length) {
+          this.setState({ errors });
+        } else {
+          //If the response from Data.js returns no errors or an empty array, it means the user was created successfully.
+          console.log(`${firstName} ${lastName} has been created!`);
+          };
+        })
+        .catch( err => { //handle rejected promises
+          console.log(err);
+          this.props.history.push('/error'); //push the error to the history stack and render the error page
+        });
+      }
+    
+      cancel = () => {
+        this.props.history.push('/'); //push the user back to the home page
+      }
+    }  
   
