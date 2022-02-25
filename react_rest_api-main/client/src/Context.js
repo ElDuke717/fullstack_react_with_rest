@@ -52,6 +52,7 @@ export class Provider extends Component {
         };
       });
     }
+    console.log(user);
     return user;
   }
 
@@ -62,6 +63,7 @@ export class Provider extends Component {
         authenticatedUser: null,
       };
     });
+    console.log('signed out');
   }
 }
 

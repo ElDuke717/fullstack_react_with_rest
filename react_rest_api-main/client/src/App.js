@@ -36,6 +36,7 @@ export default () => (
     <Router>
       <div> 
       <HeaderWithContext />
+      
       <Switch>
         <Route exact path="/" component={()=><Courses/>} />
         <Route path="/courses/:id" component={()=><CourseDetail />} />

@@ -7,7 +7,7 @@ import { Consumer } from './Context';
 export default ({ component: Component, ...rest }) => {
   return (
     <Consumer>
-      { context => (
+      {context => (
         <Route
           {...rest}
           // if the user is authenticated, render the components passed in as a prop via PrivateRoute in the Switch
@@ -15,7 +15,8 @@ export default ({ component: Component, ...rest }) => {
             <Component {...props} />
           ) : (
             // if the user is not authenticated, redirect to the signin page
-            <Redirect to='/signin' /> 
+            console.log('redirect to signin'),
+            <Redirect to='/signin' />
           )
           }
         />

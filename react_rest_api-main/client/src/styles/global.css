@@ -1,6 +1,34 @@
 /* global.css */
 
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+
+:root {
+    --shadow-color: 263deg 26% 15%;
+    --shadow-elevation-low:
+      0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+      0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
+      1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
+    --shadow-elevation-medium:
+      0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+      0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
+      2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
+      5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
+    --shadow-elevation-high:
+      0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+      1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
+      2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
+      4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
+      7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
+      11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
+      17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
+      25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
+      --course-title-color: hsla(263, 50%, 90%, 1);
+      --course-title-color-hover: hsla(263, 20%, 50%, 0.8);
+      --course-module-hover: hsla(263, 20%, 50%, 0.8);
+      --course-add-title-color: hsla(263, 20%, 95%, 1)
+
+  }
+  
 * {
     box-sizing: border-box;
 }
@@ -40,6 +68,7 @@ p {
 a {
     color: #939;
     text-decoration: none;
+    padding: 10px;
 }
 
 .wrap {
@@ -75,16 +104,25 @@ header {
 }
 .header--logo a {
     font-size: 1.25rem;
-    color: #fff;
+    color: hsl(263, 20%, 90%);
+    transition: all .75s ease-in-out;
 }
+.header--logo a:hover {
+    font-size: 1.25rem;
+    color: hsl(0, 0%, 100%);
+    transition: all .75s ease-in-out;
+}
+
 header li {
     font-size: .8rem;
 }
 header nav a {
     color: #dbd;
+    transition: all .75s ease-in-out;
 }
 header nav a:hover {
     color: #fff;
+    transition: all .75s ease-in-out;
 }
 
 .header--signedin li {
@@ -102,27 +140,40 @@ header nav a:hover {
     margin-bottom: 1.5rem;
     display: block;
     transition: all .75s ease-in-out;
+    box-shadow: var(--shadow-elevation-low)
 }
 
 .course--module:hover {
-    background: hsla(264, 20%, 61%, 1);
+    background: var(--course-module-hover);
+    rotate: -1deg;
     transition: all .5s ease-in-out;
+    box-shadow: var(--shadow-elevation-high)
 }
 
 .course--label {
-    color: #fff;
+    color: var(--course-title-color);
     font-size: .9rem;
     font-weight: 400;
     margin-bottom: .25rem;
 }
+
+/* .course--label:hover {
+    color: var(--course-title-color-hover);
+} */
 .course--title {
-    color: #fff;
+    color: var(--course-title-color);
     font-weight: 700;
     font-size: 1.25rem;
+    transition: all .5s ease-in-out;
 }
+/* .course--title:hover {
+    color: var(--course-title-color-hover);
+    transition: all .5s ease-in-out;
+} */
+
 .course--add--module {
-    background: #ddd9e4;
-    color: #57496e;
+    background: hsla(263, 20%, 51%, 1);
+    color: var(--course-add-title-color);
     font-weight: 300;
     font-size: 1.25rem;
 }
@@ -130,7 +181,7 @@ header nav a:hover {
     width: 20px;
     height: auto;
     margin-right: 5px;
-    fill: hsla(263, 20%, 36%, 1);
+    fill: var(--course-add-title-color)
 }
 
 .course--add--title .add:hover {
@@ -258,6 +309,21 @@ input:focus, button:focus, .button:focus, textarea:focus {
     font-weight: 300;
     border:hsla(263, 20%, 36%, 1) 1px solid;
     border-radius: 5px;;
+}
+
+.signupheader{
+    font-size: 2rem;
+    font-weight: 700;
+    color: hsl(263, 20%, 40%);
+    margin-bottom: .5rem;
+}
+
+.selectCourse {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color:  hsla(264, 10%, 70%, 1);
+    margin: 40px;
+    text-shadow: 1px 1px hsla(264, 10%, 85%, 1);
 }
 
 @media screen and (min-width: 600px) {

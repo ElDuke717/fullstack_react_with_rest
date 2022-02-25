@@ -24,7 +24,7 @@ export default class UserSignUp extends Component {
         return (
           <div className="form--centered">
             <div className="grid-33 centered signin">
-              <h1>Sign Up</h1>
+              <h1 className="signupheader">Sign Up</h1>
               <Form 
                 cancel={this.cancel}
                 errors={errors}

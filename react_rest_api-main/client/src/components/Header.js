@@ -9,12 +9,12 @@ export default class Header extends React.PureComponent {
         <div id="root">
         <header>
             <div className="wrap header--flex">
-                <h1 className="header--logo"><a href="/">Lifetime Learning Course Catalog</a></h1>
+                <h1 className="header--logo"><a href="/">Lifetime Learning Course Catalog 🕶</a></h1>
                 {/* <img className="glasses" src="./glasses.png" alt="glasses" /> */}
                 <nav>
                   {authUser ? 
                     <React.Fragment>
-                        <span>Welcome, {authUser.firstName}!</span>
+                        <span>Welcome, {authUser.firstName}! 👋</span>
                         <Link to="/signout">Sign Out</Link>
                     </React.Fragment>
                   :
