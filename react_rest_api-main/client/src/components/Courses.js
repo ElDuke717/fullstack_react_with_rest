@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Course from './Course'
 import axios from 'axios';
 
 const Courses = () => {
     //useState sets the state for the Courses component.  setCourses is called when the axios call is made to the server and the response is saved into the state.
     const [ courses, setCourses ] = useState([]);
-
+    
     const getCourses = () => {
         axios.get('http://localhost:5000/api/courses')
         //The response from axios request is saved into the state, pushed into the array, and then the array is returned. 

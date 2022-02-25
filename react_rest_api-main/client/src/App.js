@@ -42,7 +42,7 @@ export default () => (
         <Route path="/courses/:id" component={()=><CourseDetail />} />
         <Route path="/courses" component={()=><Courses/>} />        
         <PrivateRoute path="/create" component={CreateWithAuthentication} />
-        <PrivateRoute path="/courses/:id/update" component={UpdateWithAuthentication} />
+        <Route path="/courses/:id/update" component={UpdateWithAuthentication} />
         <Route exact path="/signin" component={UserSignInWithContext} /> 
          {/* Adding UserSignUpWithContext in the place of <UserSignUp /> allows UserSignUp to use the value passed by Provider */}
         <Route path="/signup" component={UserSignUpWithContext} />

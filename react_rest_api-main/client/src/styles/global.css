@@ -172,7 +172,7 @@ header nav a:hover {
 } */
 
 .course--add--module {
-    background: hsla(263, 20%, 51%, 1);
+    background: hsla(263, 20%, 60%, 1);
     color: var(--course-add-title-color);
     font-weight: 300;
     font-size: 1.25rem;
