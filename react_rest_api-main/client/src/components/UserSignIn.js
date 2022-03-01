@@ -77,9 +77,13 @@ export default class UserSignIn extends Component  {
             return { errors: ['Invalid username or password'] };
           });
         } else { 
-          // if sign-in is successful, redirect to the home page
+          // if sign-in is successful, redirect to the courses page
           this.props.history.push('/');
           console.log(`sign-in successful, ${user.firstName} ${user.lastName} is signed in!`);
+          // console.log(password);
+          // user.password = password;
+          // console.log(user);
+          // console.log(user.password);
         }
       })
       .catch((error) => {

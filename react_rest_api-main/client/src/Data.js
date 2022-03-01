@@ -21,6 +21,8 @@ export default class Data {
     if (requiresAuth) {
       // btoa creates a base-64 encoded string from a string of text.  It is used to encode the credentials.
       const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
+      const decodedCredentials = atob(encodedCredentials);
+      console.log(decodedCredentials);
       // Adds authorization header to the request by appending the headers object
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
@@ -61,9 +63,22 @@ export default class Data {
   }
 
   //Performs an async operation to POST/create a new course using the api method above to the /courses endpoint.
-  //need to figure out where course will originate (props?) and how it will be passed through.
   async createCourse(course) { 
-    const response = await this.api('/courses', 'POST', course);
+    const response = await this.api('/courses', 'POST', course, true, { emailAddress: course.emailAddress, password: course.password });
+    if(response.status === 201) { return []; }
+    else if (response.status === 400) {
+      return response.json().then(data => {
+        return data.errors;
+      });
+    }
+    else {
+      throw new Error();
+    }
+  }
+
+  //Performs an async operation to PUT/update an existing course using the api method above to the /courses endpoint.
+  async updateCourse(course) { 
+    const response = await this.api('/courses', 'PUT', course, true, { emailAddress: course.emailAddress, password: course.password });
     if(response.status === 201) { return []; }
     else if (response.status === 400) {
       return response.json().then(data => {

@@ -115,6 +115,7 @@ export default class UserSignUp extends Component {
           this.setState({ errors });
         } else {
           //If the response from Data.js returns no errors or an empty array, it means the user was created successfully.
+          this.props.history.push('/signup');
           console.log(`${firstName} ${lastName} has been created!`);
           };
         })

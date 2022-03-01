@@ -8,24 +8,27 @@ export default class CreateCourse extends Component {
         description:'',
         estimatedTime:'',
         materialsNeeded:'',
+        userId: this.props.context.authenticatedUser.id,
         errors:[]
    }
 
     render() {
+        console.log('update course render');
+        
+        //Context is pulled from props via destructuring so that it's properties can be used. 
         const { context } = this.props;
-        // const authUser = context.authenticatedUser;
-        console.log(this.props);
+        const authUser = context.authenticatedUser;
 
         const { 
             title, 
             description,
             estimatedTime,
             materialsNeeded,
+            userId,
             errors} = this.state
 
     return (
         <div className="wrap">
-            {/* <h1>{authUser.firstName} is logged in</h1> */}
             <h2>Create Course</h2>
             <Form 
             cancel={this.cancel}
@@ -44,6 +47,7 @@ export default class CreateCourse extends Component {
                             value={title} 
                             onChange={this.change} 
                             placeholder="course title" />
+                        <p>By {`${authUser.firstName} ${authUser.lastName}`}</p>
                         <label htmlFor="courseDescription">Course Description</label>
                         <textarea 
                             id="courseDescription" 
@@ -104,7 +108,10 @@ export default class CreateCourse extends Component {
             title, 
             description,
             estimatedTime,
-            materialsNeeded
+            materialsNeeded,
+            userId: context.authenticatedUser.id,
+            emailAddress: context.authenticatedUser.emailAddress, 
+            password: context.authenticatedUser.password
         }
 
         console.log('this.state: ', this.state);
@@ -124,6 +131,7 @@ export default class CreateCourse extends Component {
         } else {
           //If the response from Data.js returns no errors or an empty array, it means the course was created successfully.
           console.log(`Course ${title} has been created!`);
+            this.props.history.push('/');
           };
         })
         .catch( err => { //handle rejected promises

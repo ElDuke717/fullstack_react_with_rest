@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams, Link } from "react-router-dom"
-// import { CourseContext } from './Context/Context';
+//import context from "export const Context = React.createContext();" in Context.js to access authenticatedUser 
+import { Context } from '../Context';
 
 
 //Click on "Update Course" button from Courses.js, then import course specific information from the course props and use to populate data in this view
@@ -9,8 +10,23 @@ import { useParams, Link } from "react-router-dom"
 
 //import course specific information from the course object
 const CourseDetail = (props) => {
-  //useState sets the state for the Courses component.  setCourses is called when the axios call is made to the server and the response is saved into the state.
+    //useState sets the state for the Courses component.  setCourses is called when the axios call is made to the server and the response is saved into the state.
     const [ course, setCourse ] = useState([]);
+    //useContext is used to access the authenticatedUser state from the Context.js file 
+    const {authenticatedUser} = useContext(Context);
+    //authId is used to compare the autthenticatedUser's id with the course creator's id to determine if the authenticatedUser is the creator of the course
+    //if authenticatedUser is null, then the id is set to zero so the comparison logic can be used.
+    let authId;
+    if (authenticatedUser === null) {
+        authId = 0;
+    } else {
+        authId = authenticatedUser.id;
+    }//}
+    //userId is initiated so that conditional logic can be used below - if it's not used, then course.userId will be undefined
+    let userId; 
+    //logic that sets the userId variable for logic using in rendering buttons below.
+    course.user ? userId = course.user.id : userId = "";
+
     //id gets the course id from the URL throuugh useParams - :id is set in the route in app, and useParams is able to pull the id from the URL based on the route's id.
     let { id } = useParams();
 
@@ -28,15 +44,20 @@ const CourseDetail = (props) => {
       getData();
   },[]);
   
-  
     return (
    
     <div id="root">
         <main>
             <div className="actions--bar">
                 <div className="wrap">
-                    <Link className="button" to={{pathname:`update`}}>Update Course </Link>
+                {    
+                    userId === authId ?
+                    <span>
+                    <Link className="button" to={{pathname:`/courses/${id}/update`}}>Update Course </Link>
                     <a className="button" href="deletecourse">Delete Course</a>
+                    </span> 
+                    : ""
+                    }
                     <a className="button button-secondary" href="/">Return to List</a>
                 </div>
             </div>
@@ -48,7 +69,7 @@ const CourseDetail = (props) => {
                         <div>
                             <h3 className="course--detail--title">Course</h3>
                             <h4 className="course--name">{course.title}</h4>
-                            {course.user ? <p>By {course.user.firstName} {course.user.lastName}</p> : <p> No User Found </p>}
+                            {course.user ? <p>By {course.user.firstName} {course.user.lastName} </p> : <p> No User Found </p>}
 
                             <p>{course.description}</p>
                             

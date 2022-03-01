@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 // Data helper class from Data.js
 import Data from './Data';
 
+//import JS-cookie
+import Cookies from 'js-cookie';
+
 export const Context = React.createContext(); 
 
 export class Provider extends Component {
@@ -15,6 +18,10 @@ export class Provider extends Component {
     super();
     //initialize a new instance of the Data class inside the constructor
     this.data = new Data();
+    this.cookie = Cookies.get('authenticatedUser');
+    this.state = {
+      authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
+    };
   }
 
   render() {
@@ -52,6 +59,10 @@ export class Provider extends Component {
           authenticatedUser: user,
         };
       });
+      user.password = password;
+      console.log(user.password)
+      const cookieOptions = { expires: 1 }
+      Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions);
     }
     console.log(user);
     return user;
@@ -65,6 +76,7 @@ export class Provider extends Component {
       };
     });
     console.log('signed out');
+    Cookies.remove('authenticatedUser');
   }
 }
 
