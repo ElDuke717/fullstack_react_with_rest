@@ -76,9 +76,10 @@ export default class Data {
     }
   }
 
+  
   //Performs an async operation to PUT/update an existing course using the api method above to the /courses endpoint.
   async updateCourse(course) { 
-    const response = await this.api('/courses', 'PUT', course, true, { emailAddress: course.emailAddress, password: course.password });
+    const response = await this.api(`/courses/${course.courseId}`, 'PUT', course, true, { emailAddress: course.emailAddress, password: course.password });
     if(response.status === 201) { return []; }
     else if (response.status === 400) {
       return response.json().then(data => {
