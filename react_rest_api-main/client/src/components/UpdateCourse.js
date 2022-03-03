@@ -157,16 +157,6 @@ export default class UpdateCourse extends Component {
             emailAddress, 
             password,
         }
-
-        console.log(courseId);
-
-        console.log('this.state: ', this.state);
-        console.log('course:', course);
-        console.log('this.props: ', this.props);
-        console.log('context: ', context);
-        console.log('courseId: ', this.state.courseId);
-        
-   
     
     //Creates a new user using the createUser method in Data.js - user is passed as an argument and is the object  holds 
     //the user's information.

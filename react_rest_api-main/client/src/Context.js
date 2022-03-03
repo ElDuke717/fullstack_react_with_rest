@@ -27,7 +27,6 @@ export class Provider extends Component {
   render() {
     // authenticated user is pulled out of state
     const { authenticatedUser } = this.state;
-    console.log(authenticatedUser);
     
     //value is an object that contains a data property set to the data.
     const value = {
@@ -75,7 +74,6 @@ export class Provider extends Component {
         authenticatedUser: null,
       };
     });
-    console.log('signed out');
     Cookies.remove('authenticatedUser');
   }
 }

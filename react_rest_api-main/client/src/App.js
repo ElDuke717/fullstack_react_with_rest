@@ -31,6 +31,7 @@ const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 // const CourseWithAuthentication = withContext(Courses);
 const UserSignOutWithContext = withContext(UserSignOut);
+const DeleteCourseWithAuthentication = withContext(DeleteCourse);
 
 export default () => (
     <Router>
@@ -40,6 +41,7 @@ export default () => (
       <Switch>
         <Route exact path="/" component={()=><Courses/>} />
         <PrivateRoute exact path="/courses/:id/update" component={UpdateWithAuthentication} />
+        <PrivateRoute exact path="/courses/:id/delete" component={DeleteCourseWithAuthentication} />
         <Route path="/courses/:id" component={()=><CourseDetail />} />
         <Route path="/courses" component={()=><Courses/>} />        
         <PrivateRoute path="/create" component={CreateWithAuthentication} />        
@@ -47,7 +49,7 @@ export default () => (
          {/* Adding UserSignUpWithContext in the place of <UserSignUp /> allows UserSignUp to use the value passed by Provider */}
         <Route path="/signup" component={UserSignUpWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
-        <Route path="/deletecourse" component={()=><DeleteCourse/>} />
+        
         <Route path="*" component={()=><NotFound/>} />
       </Switch>  
       </div>

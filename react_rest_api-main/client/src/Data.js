@@ -91,5 +91,19 @@ export default class Data {
     }
   }
 
+  //Performs an async operation to DELETE an existing course using the api method above to the /courses endpoint.
+  async deleteCourse(course) { 
+    const response = await this.api(`/courses/${course.courseId}`, 'DELETE', course, true, { emailAddress: course.emailAddress, password: course.password });
+    if(response.status === 201) { return []; }
+    else if (response.status === 400) {
+      return response.json().then(data => {
+        return data.errors;
+      });
+    }
+    else {
+      throw new Error();
+    }
+  }
+
 }
 

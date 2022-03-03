@@ -54,7 +54,7 @@ const CourseDetail = (props) => {
                     userId === authId ?
                     <span>
                     <Link className="button" to={{pathname:`/courses/${id}/update`}}>Update Course </Link>
-                    <a className="button" href="deletecourse">Delete Course</a>
+                    <Link className="button" to={{pathname:`/courses/${id}/delete`}}>Delete Course</Link>
                     </span> 
                     : ""
                     }
