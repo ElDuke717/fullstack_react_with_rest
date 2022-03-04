@@ -33,7 +33,7 @@ const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 const DeleteCourseWithAuthentication = withContext(DeleteCourse);
 
-export default () => (
+const App = () => (
     <Router>
       <div> 
       <HeaderWithContext />
@@ -56,5 +56,5 @@ export default () => (
     </Router>
   );
 
-
+export default App;
 

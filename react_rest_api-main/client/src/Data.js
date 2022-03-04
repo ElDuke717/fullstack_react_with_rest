@@ -21,6 +21,7 @@ export default class Data {
     if (requiresAuth) {
       // btoa creates a base-64 encoded string from a string of text.  It is used to encode the credentials.
       const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
+      //decoded credentials are used for error checking
       const decodedCredentials = atob(encodedCredentials);
       console.log(decodedCredentials);
       // Adds authorization header to the request by appending the headers object
@@ -80,7 +81,7 @@ export default class Data {
   //Performs an async operation to PUT/update an existing course using the api method above to the /courses endpoint.
   async updateCourse(course) { 
     const response = await this.api(`/courses/${course.courseId}`, 'PUT', course, true, { emailAddress: course.emailAddress, password: course.password });
-    if(response.status === 201) { return []; }
+    if(response.status === 201 || response.status === 204) { return []; }
     else if (response.status === 400) {
       return response.json().then(data => {
         return data.errors;
@@ -93,8 +94,8 @@ export default class Data {
 
   //Performs an async operation to DELETE an existing course using the api method above to the /courses endpoint.
   async deleteCourse(course) { 
-    const response = await this.api(`/courses/${course.courseId}`, 'DELETE', course, true, { emailAddress: course.emailAddress, password: course.password });
-    if(response.status === 201) { return []; }
+    const response = await this.api(`/courses/${course.id}`, 'DELETE', course, true, { emailAddress: course.emailAddress, password: course.password });
+    if(response.status === 201 || response.status === 204 || response.status === 200) { return []; }
     else if (response.status === 400) {
       return response.json().then(data => {
         return data.errors;

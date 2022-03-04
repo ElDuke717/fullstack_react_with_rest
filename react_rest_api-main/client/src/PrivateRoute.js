@@ -4,7 +4,7 @@ import { Consumer } from './Context';
 
 // PrivateRoute component is a high-order component for protecting routes.
 // Component is destructured and renamed, all other props passed are passed via the ...rest variable
-export default ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
     <Consumer>
       {context => (
@@ -25,3 +25,5 @@ export default ({ component: Component, ...rest }) => {
     </Consumer>
   );
 };
+
+export default PrivateRoute;

@@ -24,7 +24,7 @@ export default class CreateCourse extends Component {
             description,
             estimatedTime,
             materialsNeeded,
-            userId,
+            //userId,
             errors} = this.state
 
     return (
