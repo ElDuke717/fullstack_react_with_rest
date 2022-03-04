@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, Link } from "react-router-dom"
 //import context from "export const Context = React.createContext();" in Context.js to access authenticatedUser 
 import { Context } from '../Context';
+import ReactMarkdown from 'react-markdown';
 
 
 //Click on "Update Course" button from Courses.js, then import course specific information from the course props and use to populate data in this view
@@ -73,7 +74,7 @@ const CourseDetail = (props) => {
                             <h4 className="course--name">{course.title}</h4>
                             {course.user ? <p>By {course.user.firstName} {course.user.lastName} </p> : <p> No User Found </p>}
 
-                            <p>{course.description}</p>
+                            <ReactMarkdown children = {course.description}/>
                             
                         </div>
                         <div>
@@ -81,9 +82,9 @@ const CourseDetail = (props) => {
                             <p>{course.estimatedTime}</p>
 
                             <h3 className="course--detail--title">Materials Needed</h3>
-                            <ul className="course--detail--list">
-                                <li>{course.materialsNeeded}</li>
-                            </ul>
+                            <div className ="course--detail--list">
+                                <ReactMarkdown children = {course.materialsNeeded}/>
+                            </div>                            
                         </div>
                     </div>
                 </form>

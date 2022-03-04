@@ -205,6 +205,12 @@ header nav a:hover {
     font-weight: 700;
     color: #47395e;
 }
+
+.course--author{
+    color: var(--course-add-title-color);
+    margin: 10px;
+}
+
 .course--detail--list {
     font-weight: 300;
     margin: 0 0 1.5rem 1rem;

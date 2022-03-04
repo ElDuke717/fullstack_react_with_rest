@@ -59,11 +59,9 @@ export class Provider extends Component {
         };
       });
       user.password = password;
-      console.log(user.password)
       const cookieOptions = { expires: 1 }
       Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions);
     }
-    console.log(user);
     return user;
   }
 

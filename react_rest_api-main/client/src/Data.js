@@ -22,8 +22,8 @@ export default class Data {
       // btoa creates a base-64 encoded string from a string of text.  It is used to encode the credentials.
       const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
       //decoded credentials are used for error checking
-      const decodedCredentials = atob(encodedCredentials);
-      console.log(decodedCredentials);
+      // const decodedCredentials = atob(encodedCredentials);
+      // console.log(decodedCredentials);
       // Adds authorization header to the request by appending the headers object
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
