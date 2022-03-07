@@ -62,6 +62,7 @@ const DeleteCourse = () => {
     
     //deleteCourse is called when the user clicks the delete button.  It calls deleteCourse in context.data
     const deleteCourse = () => {
+        console.log('run deleteCourse');
         context.data.deleteCourse(course);
         //redirect to the courses page
         history.push("/");

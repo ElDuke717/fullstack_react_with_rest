@@ -166,7 +166,7 @@ export default class UpdateCourse extends Component {
             this.setState({ errors });
         } else {
           //If the response from Data.js returns no errors or an empty array, it means the course was updated successfully.
-        console.log(`Course ${title} has been updated!`);
+        console.log(`Course: "${title}" has been updated!`);
             this.props.history.push(`/courses/${courseId}`); //redirects to the course detail page after it has been updated.
             };
         })
