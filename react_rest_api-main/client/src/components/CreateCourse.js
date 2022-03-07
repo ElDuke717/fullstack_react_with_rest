@@ -13,18 +13,17 @@ export default class CreateCourse extends Component {
    }
 
     render() {
-        console.log('update course render');
         
         //Context is pulled from props via destructuring so that it's properties can be used. 
         const { context } = this.props;
         const authUser = context.authenticatedUser;
 
+        //State is updated with these values based on what's entered into the form.  Each variable corresponds to the value attribute in the form.
         const { 
             title, 
             description,
             estimatedTime,
             materialsNeeded,
-            //userId,
             errors} = this.state
 
     return (
@@ -124,7 +123,7 @@ export default class CreateCourse extends Component {
           this.setState({ errors });
         } else {
           //If the response from Data.js returns no errors or an empty array, it means the course was created successfully.
-          console.log(`Course ${title} has been created!`);
+          console.log(`Course: "${title}" has been created!`);
             this.props.history.push('/');
           };
         })

@@ -44,6 +44,7 @@ const CourseDetail = (props) => {
         } 
 
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]); //is used to prevent the useEffect from running on every render.  Leaving it out will cause the useEffect to run on every render and thus continuously fetch the data.
 
   

@@ -19,26 +19,41 @@ const DeleteCourse = () => {
     //Pull the  emailAddress and password from the context.  These are added to the course object that's passed to deleteCourse for credentials in the header.
     const { emailAddress, password } = context.authenticatedUser;
 
-    //getCourseData pulls in the most up-to-date information from the server for the course.  It is called in the useEffect hook below.
-    const getCourseData = () => {
-        axios.get(`http://localhost:5000/api/courses/${id}`)
-        //The response from axios request is saved into the state, pushed into the array, and then the array is returned.
-        .then(response => setCourse(response.data))  
-        .catch(error => {
-                console.log(error.message)
-            });    
-    }
+    // //getCourseData pulls in the most up-to-date information from the server for the course.  It is called in the useEffect hook below.
+    // const getCourseData = () => {
+    //     axios.get(`http://localhost:5000/api/courses/${id}`)
+    //     //The response from axios request is saved into the state, pushed into the array, and then the array is returned.
+    //     .then(response => setCourse(response.data))  
+    //     .catch(error => {
+    //             console.log(error.message)
+    //         });    
+    // }
 
     //useEffect is called after the component is rendered and allows the axios fetch request to complete before it proceeds.  It replaces componentDidMount.
-        useEffect(() => {
-            getCourseData();
+    useEffect(() => {
+        
+        //getCourseData pulls in the most up-to-date information from the server for the course.  It is called in the useEffect hook below.
+        const getCourseData = () => {
+            axios.get(`http://localhost:5000/api/courses/${id}`)
+            //The response from axios request is saved into the state, pushed into the array, and then the array is returned.
+            .then(response => setCourse(response.data))  
+            .catch(error => {
+                    console.log(error.message)
+                });    
         }
-        //,[] leaving the array out here as it seems to throw an error by being present.  We want useEffect to run each render, so it seems like it may be fine to leave it out.
-        );
+        getCourseData();
+        return () => {
+            setCourse({}); // From stackoverflow: https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp
+        };
+        
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        ,[] //leaving the array out here as it seems to throw an error by being present.  
+    );
     
     //JavaScript's Object.assign method to add the user's email and password to the course object, so that it can be accessed by deleteCourse.
     //const updatedCourse = Object.assign(course, {emailAddress:emailAddress, password:password});
-   Object.assign(course, {emailAddress:emailAddress, password:password});  
+    Object.assign(course, {emailAddress:emailAddress, password:password});  
 
     //Cancel uses history to redirect the user to the specific course page.  
     const cancel = () =>  {
