@@ -36,6 +36,7 @@ export default class Data {
     // calls the api method above and passes in the path to the endpoint and the method (GET), sets requiresAuth to true and passes in
     // credentials from the user object.
     const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
+    console.log(`getUser server response: ${response.status}`);
     if (response.status === 200) {
       return response.json().then(data => data);
     }
@@ -50,6 +51,7 @@ export default class Data {
   //Performs an async operation to POST/create a user using the api method above to the /users endpoint.
   async createUser(user) {
     const response = await this.api('/users', 'POST', user);
+    console.log(`createUser server response: ${response.status}`);
     if (response.status === 201) {
       return [];
     }
@@ -66,6 +68,7 @@ export default class Data {
   //Performs an async operation to POST/create a new course using the api method above to the /courses endpoint.
   async createCourse(course) { 
     const response = await this.api('/courses', 'POST', course, true, { emailAddress: course.emailAddress, password: course.password });
+    console.log(`createCourse server response: ${response.status}`);
     if(response.status === 201) { return []; }
     else if (response.status === 400) {
       return response.json().then(data => {
@@ -81,6 +84,7 @@ export default class Data {
   //Performs an async operation to PUT/update an existing course using the api method above to the /courses endpoint.
   async updateCourse(course) { 
     const response = await this.api(`/courses/${course.courseId}`, 'PUT', course, true, { emailAddress: course.emailAddress, password: course.password });
+    console.log(`updateCourse server response: ${response.status}`);
     if(response.status === 201 || response.status === 204) { return []; }
     else if (response.status === 400) {
       return response.json().then(data => {
@@ -95,7 +99,7 @@ export default class Data {
   //Performs an async operation to DELETE an existing course using the api method above to the /courses endpoint.
   async deleteCourse(course) { 
     const response = await this.api(`/courses/${course.id}`, 'DELETE', course, true, { emailAddress: course.emailAddress, password: course.password });
-    console.log(`server response: ${response.status}`);
+    console.log(` deleteCourse server response: ${response.status}`);
     if(response.status === 201 || response.status === 204 || response.status === 200) { return []; }
     else if (response.status === 400) {
       return response.json().then(data => {

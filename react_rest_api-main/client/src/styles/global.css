@@ -309,12 +309,16 @@ input:focus, button:focus, .button:focus, textarea:focus {
     outline: 2px solid #332a40;
 }
 .serious { 
+    display: flex;
+    justify-content: center;
     background: #e9e5f0; 
     color: hsl(0, 100%, 50%, 1);
     font-size: 2rem;
     font-weight: 300;
-    border:hsla(263, 20%, 36%, 1) 1px solid;
-    border-radius: 5px;;
+    border:hsla(263, 20%, 36%, 1) 5px solid;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem 0;
 }
 
 .signupheader{

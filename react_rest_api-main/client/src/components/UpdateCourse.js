@@ -36,13 +36,15 @@ export default class UpdateCourse extends Component {
                 description: course.description,
                 estimatedTime: course.estimatedTime,
                 materialsNeeded: course.materialsNeeded,
+                courseAuthor: course.userId
             })
         })
         .catch(error => {
-            console.log(error.message)
+            console.log(error.message);
+            this.props.history.push("/notfound");
         });    
         }
-
+        
 
     render() {
         
@@ -58,6 +60,13 @@ export default class UpdateCourse extends Component {
             materialsNeeded,
             errors} = this.state
 
+            console.log(this.state.courseAuthor)
+            console.log(authUser.id)
+            console.log(this.state.courseAuthor === authUser.id)
+
+     if (this.state.courseAuthor !== authUser.id) { 
+         return this.props.history.push('/forbidden')
+        }
     return (
         <div className="wrap">
             <h2>Update Course</h2>

@@ -16,6 +16,7 @@ import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
 import DeleteCourse from './components/DeleteCourse';
 import NotFound from './components/NotFound';
+import Forbidden from './components/Forbidden';
 
 //import withContext function from Context.js
 import withContext from './Context';
@@ -49,8 +50,9 @@ const App = () => (
          {/* Adding UserSignUpWithContext in the place of <UserSignUp /> allows UserSignUp to use the value passed by Provider */}
         <Route path="/signup" component={UserSignUpWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
-        
-        <Route path="*" component={()=><NotFound/>} />
+        <Route path="/forbidden" component={Forbidden} />
+        {/* Redirect to the notFound component if no paths match */}
+        <Route  component={NotFound} />
       </Switch>  
       </div>
     </Router>

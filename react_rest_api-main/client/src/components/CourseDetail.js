@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useHistory} from "react-router-dom"
 //import context from "export const Context = React.createContext();" in Context.js to access authenticatedUser 
 import { Context } from '../Context';
 import ReactMarkdown from 'react-markdown';
@@ -13,6 +13,9 @@ import ReactMarkdown from 'react-markdown';
 const CourseDetail = (props) => {
     //useState sets the state for the Courses component.  setCourses is called when the axios call is made to the server and the response is saved into the state.
     const [ course, setCourse ] = useState([]);
+    //React router's useHistory is used to access the history object.  We have to use useHistory since this is a functional component and is used below to red
+    const history = useHistory();
+    
     //useContext is used to access the authenticatedUser state from the Context.js file 
     const {authenticatedUser} = useContext(Context);
     //authId is used to compare the autthenticatedUser's id with the course creator's id to determine if the authenticatedUser is the creator of the course
@@ -32,24 +35,25 @@ const CourseDetail = (props) => {
     let { id } = useParams();
 
   //useEffect is called after the component is rendered and allows the axios fetch request to complete before it proceeds. 
-  useEffect(() => {
+    useEffect(() => {
     //`http://localhost:5000/api/courses/${id}` pulls in the course id from the URL and uses it to pull the course information from the server.
-    const getData = () => {
-        axios.get(`http://localhost:5000/api/courses/${id}`)
-        //The response from axios request is saved into the state, pushed into the array, and then the array is returned.
-        .then(response => setCourse(response.data))
-            .catch(error => {
-                console.log(error.message)
-            });    
-        } 
+        const getData = () => {
+            axios.get(`http://localhost:5000/api/courses/${id}`)
+            //The response from axios request is saved into the state, pushed into the array, and then the array is returned.
+            .then(response => setCourse(response.data))
+                .catch(error => {
+                    console.log(error.message);
+                    //redirects to the notfound page if the course id is not found
+                    history.push('/notfound');
+                });    
+            } 
 
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]); //is used to prevent the useEffect from running on every render.  Leaving it out will cause the useEffect to run on every render and thus continuously fetch the data.
 
-  
+
     return (
-   
     <div id="root">
         <main>
             <div className="actions--bar">
@@ -74,7 +78,7 @@ const CourseDetail = (props) => {
                             <h3 className="course--detail--title">Course</h3>
                             <h4 className="course--name">{course.title}</h4>
                             {course.user ? <p>By {course.user.firstName} {course.user.lastName} </p> : <p> No User Found </p>}
-
+                            {/* ReactMarkdown is used allow Markdown to be appropriately displayed */}
                             <ReactMarkdown children = {course.description}/>
                             
                         </div>

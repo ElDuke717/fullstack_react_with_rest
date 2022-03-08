@@ -63,7 +63,7 @@ export class Provider extends Component {
       const cookieOptions = { 
         expires: 1,
         sameSite: 'strict',
-        secure: true
+        secure: false
       };
       // set the cookie so user persists across pages. 
       Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions);

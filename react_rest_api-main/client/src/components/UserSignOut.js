@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 const UserSignOut = ({ context }) => {
   // adding useEffect here prevent conflicts with the render
   useEffect(() => context.actions.signOut());
+  console.log(`sign-out successful, ${context.authenticatedUser.firstName} ${context.authenticatedUser.lastName} has signed-out!`);
     return (
         <Redirect to="/" />
       );
