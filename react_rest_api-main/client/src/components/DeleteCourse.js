@@ -62,12 +62,17 @@ const DeleteCourse = () => {
     
     //deleteCourse is called when the user clicks the delete button.  It calls deleteCourse in context.data
     const deleteCourse = () => {
-        console.log('run deleteCourse');
-        context.data.deleteCourse(course);
-        //redirect to the courses page
-        history.push("/");
-        //adding window.location.reload() makes sure that when courses is rendered, the deleted course no longer shows up.
-        window.location.reload();
+        context.data.deleteCourse(course)
+        //chain on .then method so deleteCourse can finish asynchronously before redirecting to the courses page. Thanks to Chris Adams for pointing this out.
+        //important to remember that async operations need to be followed by .then methods so operations can be completed before the next operation is run.
+        .then(() => {
+            console.log(`Course ${course.title} has been deleted`);
+            //redirect to the courses page
+            history.push("/");
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
     }
 
     return(
