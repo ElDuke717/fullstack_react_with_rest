@@ -5,7 +5,7 @@ const NotFound = () => {
         <div className="wrap">
             <p>We're sorry, the page you're looking for can't be found. 🤔</p>
             <p>Please check the URL and try again.</p>
-            <h1>Error Code <span className="serious">404</span>-Page Not Found</h1>
+            <h1>Error Code <span className="serious">404 - Page Not Found</span></h1>
         </div>
     );
 }

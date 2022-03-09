@@ -42,7 +42,12 @@ const CourseDetail = (props) => {
             //The response from axios request is saved into the state, pushed into the array, and then the array is returned.
             .then(response => setCourse(response.data))
                 .catch(error => {
-                    console.log(error.message);
+                    if (error.message === 'Network Error') {
+                        console.log(error.message)
+                        console.log(error)
+                        //if there's a 500 error, then the user is redirected to the error page
+                        history.push('/error')
+                    };
                     //redirects to the notfound page if the course id is not found
                     history.push('/notfound');
                 });    

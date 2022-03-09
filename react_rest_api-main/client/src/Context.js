@@ -59,7 +59,7 @@ export class Provider extends Component {
         };
       });
       user.password = password;
-      // set options for js-cookie cookies.set method,  expiration and sameSite attributes are set.
+      // set options for js-cookie cookies.set method,  expiration, secure and sameSite attributes are set.
       const cookieOptions = { 
         expires: 1,
         sameSite: 'strict',

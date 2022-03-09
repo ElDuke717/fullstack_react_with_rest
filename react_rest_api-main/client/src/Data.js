@@ -90,6 +90,11 @@ export default class Data {
       return response.json().then(data => {
         return data.errors;
       });
+    } else if (response.status === 500) {
+      return response.json().then(data => {
+        return data.errors;
+      });
+
     }
     else {
       throw new Error();

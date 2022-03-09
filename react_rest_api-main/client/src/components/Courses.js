@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory  } from "react-router-dom";
 import Course from './Course'
 import axios from 'axios';
 
 const Courses = () => {
     //useState sets the state for the Courses component.  setCourses is called when the axios call is made to the server and the response is saved into the state.
     const [ courses, setCourses ] = useState([]);
+    //React router's useHistory is used to access the history object.  We have to use useHistory since this is a functional component and is used below to red
+    const history = useHistory();
     
-    const getCourses = () => {
-        axios.get('http://localhost:5000/api/courses')
+    const getCourses = async () => {
+        await axios.get('http://localhost:5000/api/courses')
         //The response from axios request is saved into the state, pushed into the array, and then the array is returned. 
         .then(response => setCourses(response.data))
             .catch(error => {
                 console.log(error.message)
+                console.log(error)
+                //if there's a 500 error, then the user is redirected to the error page
+                history.push('/error')
             });    
         }
-    //useEffect is called after the component is rendered and allows the axios fetch request to complete before it proceeds. 
+    
+    //useEffect is called after the component is rendered and allows the axios fetch request to complete before it proceeds.  The same as componentDidMount in a class component.
     useEffect(() => {
+        //Call the above function getCourses
         getCourses();
-    }, []);
+        
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+    []);
     
   return (
     <div id="root">
