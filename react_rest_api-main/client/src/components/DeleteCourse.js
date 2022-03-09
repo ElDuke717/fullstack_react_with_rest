@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory  } from "react-router-dom";
 import { Context } from "../Context";
 import axios from "axios";
+import Forbidden from './Forbidden';
 
 const DeleteCourse = () => {
     //Get context to verity the authenticatedUser
@@ -18,16 +19,6 @@ const DeleteCourse = () => {
     
     //Pull the  emailAddress and password from the context.  These are added to the course object that's passed to deleteCourse for credentials in the header.
     const { emailAddress, password } = context.authenticatedUser;
-
-    // //getCourseData pulls in the most up-to-date information from the server for the course.  It is called in the useEffect hook below.
-    // const getCourseData = () => {
-    //     axios.get(`http://localhost:5000/api/courses/${id}`)
-    //     //The response from axios request is saved into the state, pushed into the array, and then the array is returned.
-    //     .then(response => setCourse(response.data))  
-    //     .catch(error => {
-    //             console.log(error.message)
-    //         });    
-    // }
 
     //useEffect is called after the component is rendered and allows the axios fetch request to complete before it proceeds.  It replaces componentDidMount.
     useEffect(() => {
@@ -75,6 +66,15 @@ const DeleteCourse = () => {
         });
     }
 
+    //userId of the authenticatedUser
+    const authUser = context.authenticatedUser.id;
+    //userId of the courseAuthor
+    const courseAuth = course.userId;
+    
+     //If the user is not authenticated, they are redirected to the Forbidden page.
+    if (courseAuth !== authUser) { 
+        return <Forbidden />
+       } 
     return(
         <div className='delete--message'>
             <h1>Are you sure that you want to delete</h1>

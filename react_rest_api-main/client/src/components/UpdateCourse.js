@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Form from './Form';
+import Forbidden from './Forbidden';
 
 export default class UpdateCourse extends Component {
    
@@ -11,6 +12,7 @@ export default class UpdateCourse extends Component {
         description:'',
         estimatedTime:'',
         materialsNeeded:'',
+        //userId here is not to be confused with userId from the course object.
         userId: this.props.context.authenticatedUser.id,
         //The logic in courseId pulls the exact course number from props and sets it to the state.  This is used to update the course.
         courseId: 
@@ -26,8 +28,8 @@ export default class UpdateCourse extends Component {
     }
 
      //getData makes an axios call to the server and retrieves the data by passing in the courseId from state.
-     getData = () => {
-        axios.get(`http://localhost:5000/api/courses/${this.state.courseId}`)
+     getData = async () => {
+        await axios.get(`http://localhost:5000/api/courses/${this.state.courseId}`)
         //The response from axios request is saved into the state, pushed into the array, and then the array is returned.
         .then(response => {
             const course = response.data;
@@ -36,6 +38,7 @@ export default class UpdateCourse extends Component {
                 description: course.description,
                 estimatedTime: course.estimatedTime,
                 materialsNeeded: course.materialsNeeded,
+                //userId here is pulled from the course data and set to the state as courseAuthor.  This is used to check if the user is the author of the course.
                 courseAuthor: course.userId
             })
         })
@@ -50,7 +53,10 @@ export default class UpdateCourse extends Component {
         
     //Context is pulled from props via destructuring so that it's properties can be used. 
     const { context } = this.props;
+    //userId of the authenticatedUser
     const authUser = context.authenticatedUser;
+    //userId of the courseAuthor
+    const courseAuth = this.state.courseAuthor
     
     //State is updated with these values based on what's entered into the form.  Each variable corresponds to the value attribute in the form.
         const { 
@@ -60,13 +66,9 @@ export default class UpdateCourse extends Component {
             materialsNeeded,
             errors} = this.state
 
-            console.log(this.state.courseAuthor)
-            console.log(authUser.id)
-            console.log(this.state.courseAuthor === authUser.id)
-
-     if (this.state.courseAuthor !== authUser.id) { 
-         return this.props.history.push('/forbidden')
-        }
+     if (courseAuth !== authUser.id) { 
+         return <Forbidden />
+        } 
     return (
         <div className="wrap">
             <h2>Update Course</h2>
