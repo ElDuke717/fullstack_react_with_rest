@@ -13,7 +13,7 @@ export default class UserSignIn extends Component  {
   goBack() {
     this.props.history.goBack();
   }
-  
+  //initial state emailAddress, password, errors are blank
   state = {
     emailAddress: '',
     password: '',
@@ -22,13 +22,12 @@ export default class UserSignIn extends Component  {
  
   render() { 
     const {
+      //emailAddress, password, errors are pulled out of state, added via form entries and setState below.
       emailAddress,
       password,
       errors,
     } = this.state
   
-  //console.log(this.props.history);
-  //console.log(this.props.location)
   
   return (
     <div id="root">
@@ -89,9 +88,10 @@ export default class UserSignIn extends Component  {
             return { errors: ['Invalid username or password'] };
           });
         } else { 
-          // if sign-in is successful, redirect to the original destination page, https://stackoverflow.com/questions/46681387/react-router-v4-how-to-go-back
-          console.log(this.props.history.location);
-          this.goBack();
+          // if sign-in is successful, redirect to the original destination page, stored in location state.from in props passed from PrivateRoute
+            //from https://teamtreehouse.com/library/react-authentication/react-router-and-authentication/refine-and-complete-authentication
+            //Smarter Redirect from Unauthenticated Users
+          this.props.history.push(this.props.location.state.from);
 
         //log that user has successfully signed in
           console.log(`sign-in successful, ${user.firstName} ${user.lastName} is signed in!`);
