@@ -47,10 +47,10 @@ const CourseDetail = (props) => {
                         console.log(error)
                         //if there's a 500 error, then the user is redirected to the error page
                         history.push('/error')
-                    };
+                    } else {
                     //redirects to the notfound page if the course id is not found
                     history.push('/notfound');
-                });    
+                }});    
             } 
 
     getData();
