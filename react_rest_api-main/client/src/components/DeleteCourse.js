@@ -78,7 +78,7 @@ const DeleteCourse = () => {
     return(
         <div className='delete--message'>
             <h1>Are you sure that you want to delete</h1>
-            <h2>{course.title}?</h2>
+            <h2 className='delete-course-button'>{course.title} Course?</h2>
             <button className="button" onClick={deleteCourse}>Yes, Delete It!</button>
             <button className="button button-secondary" onClick={cancel} >Cancel</button>
         </div>        

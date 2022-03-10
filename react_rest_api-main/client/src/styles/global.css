@@ -1,6 +1,6 @@
 /* global.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Poppins:wght@400;600&display=swap');
 
 :root {
     --shadow-color: 263deg 26% 15%;
@@ -24,6 +24,7 @@
       25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
       --course-title-color: hsla(263, 50%, 90%, 1);
       --course-title-color-hover: hsla(263, 20%, 50%, 0.8);
+      --course-module: hsla(264, 20%, 51%, 1);
       --course-module-hover: hsla(263, 20%, 50%, 0.8);
       --course-add-title-color: hsla(263, 20%, 95%, 1)
 
@@ -36,7 +37,7 @@ html {
     font-size: 1.25em;
 }
 body {
-    font-family: 'Mochiy Pop P One', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: #fff;
   /* background-image: linear-gradient(
   195deg,
@@ -61,6 +62,7 @@ h2 {
 }
 p {
     font-weight: 300;
+    font-family: sans-serif;
     margin-bottom: 1.5rem;
     line-height: 1.5;
     hyphens: auto;
@@ -103,6 +105,8 @@ header {
     align-items: center;
 }
 .header--logo a {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     font-size: 1.25rem;
     color: hsl(263, 20%, 90%);
     transition: all .75s ease-in-out;
@@ -165,6 +169,7 @@ header nav a:hover {
     font-weight: 700;
     font-size: 1.25rem;
     transition: all .5s ease-in-out;
+    font-family: 'Poppins', sans-serif;
 }
 /* .course--title:hover {
     color: var(--course-title-color-hover);
@@ -172,12 +177,14 @@ header nav a:hover {
 } */
 
 .course--add--module {
+    font-family: 'Poppins', sans-serif;
     background: hsla(263, 20%, 60%, 1);
     color: var(--course-add-title-color);
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.25rem;
 }
 .course--add--title .add {
+    font-family: 'Poppins', sans-serif;
     width: 20px;
     height: auto;
     margin-right: 5px;
@@ -209,10 +216,13 @@ header nav a:hover {
 .course--author{
     color: var(--course-add-title-color);
     margin: 10px;
+    font-size: .9rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 .course--detail--list {
     font-weight: 300;
+    font-family: sans-serif;
     margin: 0 0 1.5rem 1rem;
     line-height: 1.5;
 }
@@ -272,10 +282,11 @@ textarea {
     min-height: 300px;
 }
 .button {
-    background: #7c689b;
+    font-family: 'Poppins', sans-serif;
+    background: hsla(263, 20%, 30%, 1);
     color: #fff;
     font-size: 1rem;
-    padding: .75rem 1.5rem;
+    padding: .75rem 1.75rem;
     border: 0;
     margin: 0 0 .5rem 0;
     display: block;
@@ -296,13 +307,28 @@ textarea {
     color: #7c689b;
     background: none;
     box-shadow: 0 0 0 2px #7c689b inset;
+    font-size: 1rem;
+    padding: .75rem 1.75rem;
+    border: 0;
+    margin: 0 0 .5rem 0;
+    display: block;
+    width: 210px;
+    /* height: 70px; */
+    text-align: center;
+    border-radius: .5rem;
+    font-weight: bold;
+    transition: background 0.2s;
     transition: box-shadow 0.2s, color 0.2s;
 }
 .button-secondary:hover {
     color: #63537d;
+    background: var(--course-title-color);
     box-shadow: 0 0 0 2px #63537d inset;
     cursor: pointer;
+    transition: background 0.2s;
 }
+
+
 input:focus, button:focus, .button:focus, textarea:focus {
     border: none;
     border-radius: 0;
@@ -330,10 +356,27 @@ input:focus, button:focus, .button:focus, textarea:focus {
 
 .selectCourse {
     font-size: 1.25rem;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color:  hsla(264, 10%, 70%, 1);
     margin: 40px;
-    text-shadow: 1px 1px hsla(264, 10%, 85%, 1);
+    /* text-shadow: 1px 1px hsl(264deg 2% 67%) */
+}
+
+.click-here { 
+    padding: 2px;
+    font-size: 1.25rem;
+    border: rgb(145, 121, 180) 2px solid;
+    border-radius: 5px;
+    background-color: rgb(200, 180, 233);
+}
+
+.delete--message { 
+    margin: 20px;
+}
+
+.delete-course-button { 
+    margin: 20px;
 }
 
 @media screen and (min-width: 600px) {

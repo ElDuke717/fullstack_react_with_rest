@@ -71,7 +71,7 @@ const CourseDetail = (props) => {
                     </span> 
                     : ""
                     }
-                    <a className="button button-secondary" href="/">Return to List</a>
+                    <a className="button button-secondary" href="/">Back to Course List</a>
                 </div>
             </div>
             

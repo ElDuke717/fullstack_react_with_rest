@@ -77,7 +77,7 @@ export default class UpdateCourse extends Component {
             cancel={this.cancel}
             errors={errors}
             submit={this.submit}
-            submitButtonText="Update Course"
+            submitButtonText="Update"
             elements={() => (
                 <React.Fragment>
                 <div className="main--flex">
