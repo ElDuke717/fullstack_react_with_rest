@@ -27,6 +27,7 @@ export class Provider extends Component {
   render() {
     // authenticated user is pulled out of state
     const { authenticatedUser } = this.state;
+
     
     //value is an object that contains a data property set to the data.
     const value = {

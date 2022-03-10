@@ -4,6 +4,16 @@ import Form from './Form';
 
 export default class UserSignIn extends Component  {
   
+  //constructor contains code to handle goBack functionality as part of history object.
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack() {
+    this.props.history.goBack();
+  }
+  
   state = {
     emailAddress: '',
     password: '',
@@ -17,6 +27,8 @@ export default class UserSignIn extends Component  {
       errors,
     } = this.state
   
+  //console.log(this.props.history);
+  //console.log(this.props.location)
   
   return (
     <div id="root">
@@ -77,13 +89,13 @@ export default class UserSignIn extends Component  {
             return { errors: ['Invalid username or password'] };
           });
         } else { 
-          // if sign-in is successful, redirect to the courses page
-          this.props.history.push('/');
+          // if sign-in is successful, redirect to the original destination page, https://stackoverflow.com/questions/46681387/react-router-v4-how-to-go-back
+          console.log(this.props.history.location);
+          this.goBack();
+
+        //log that user has successfully signed in
           console.log(`sign-in successful, ${user.firstName} ${user.lastName} is signed in!`);
-          // console.log(password);
-          // user.password = password;
-          // console.log(user);
-          // console.log(user.password);
+         
         }
       })
       .catch((error) => {

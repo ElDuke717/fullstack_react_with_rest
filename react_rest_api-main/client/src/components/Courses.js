@@ -14,8 +14,7 @@ const Courses = () => {
         //The response from axios request is saved into the state, pushed into the array, and then the array is returned. 
         .then(response => setCourses(response.data))
             .catch(error => {
-                console.log(error.message)
-                console.log(error)
+                console.log(error.message)               
                 //if there's a 500 error, then the user is redirected to the error page
                 history.push('/error')
             });    

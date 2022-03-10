@@ -17,7 +17,7 @@ import UserSignOut from './components/UserSignOut';
 import DeleteCourse from './components/DeleteCourse';
 import NotFound from './components/NotFound';
 import Forbidden from './components/Forbidden';
-import Error from './components/Error';
+import UnhandledError from './components/UnhandledError';
 
 //import withContext function from Context.js
 import withContext from './Context';
@@ -53,7 +53,7 @@ const App = () => (
         <Route path="/signout" component={UserSignOutWithContext} />
         <Route path="/forbidden" component={Forbidden} />
         {/* Redirect to the notFound component if no paths match */}
-        <Route path='/error' component={Error} />
+        <Route path='/error' component={UnhandledError} />
         <Route  component={NotFound} />
       </Switch>  
       </div>
