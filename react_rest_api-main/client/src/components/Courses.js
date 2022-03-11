@@ -26,7 +26,6 @@ const Courses = () => {
     useEffect(() => {
         //Call the above function getCourses
         getCourses();
-        
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps 
     []);

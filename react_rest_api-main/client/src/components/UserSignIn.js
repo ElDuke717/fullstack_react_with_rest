@@ -79,6 +79,8 @@ export default class UserSignIn extends Component  {
   submit = () => {
     // extract context from props passed by the provider
     const { context } = this.props;
+    // define "from" from props as the previous intended location for the user that hans't been redirected to the sign-in page.
+    const { from } = this.props.location.state || { from: { pathname: '/courses' } };
     // unpack username and password from state
     const { emailAddress, password } = this.state;
     // call the signIn method from the context and pass email address and password into it as arguments
@@ -92,7 +94,7 @@ export default class UserSignIn extends Component  {
           // if sign-in is successful, redirect to the original destination page, stored in location state.from in props passed from PrivateRoute
             //from https://teamtreehouse.com/library/react-authentication/react-router-and-authentication/refine-and-complete-authentication
             //Smarter Redirect from Unauthenticated Users
-          this.props.history.push(this.props.location.state.from);
+          this.props.history.push(from);
 
         //log that user has successfully signed in
           console.log(`sign-in successful, ${user.firstName} ${user.lastName} is signed in!`);

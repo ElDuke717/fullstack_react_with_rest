@@ -15,8 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             
             <Component {...props} />
           ) : (
-            // if the user is not authenticated, redirect to the signin page
-            console.log('redirect to signin'),
+            
             //Redirect to the signin page if there is no authenticated user and store their intended target into state
             <Redirect to={{
               pathname: '/signin',
