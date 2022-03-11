@@ -22,11 +22,11 @@ The app requires users to create an account and sign in to make changes to the d
 It demonstrates my knowledge of React, JSX, React Router, React Context API, and Create React App.
 It involved using the Create React App tool to set the project up and:
 
-    * Uses JavaScript and JSX to build out the components in a modular fashion.
-    * Uses React Router to set up your routes.
-    * Uses Axios to fetch data from your REST API asybcronously.
-    * Allows users to sign up and use basic authentication to support signing in.
-    * Has custom CSS styling to personalize the project.
+- Uses JavaScript and JSX to build out the components in a modular fashion.
+- Uses React Router to set up your routes.
+- Uses Axios to fetch data from your REST API asybcronously.
+- Allows users to sign up and use basic authentication to support signing in.
+- Has custom CSS styling to personalize the project.
 
 
 ## Criteria for Exceeds Expectations:
