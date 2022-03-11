@@ -30,7 +30,7 @@ It involved using the Create React App tool to set the project up and:
 
 - Uses JavaScript and JSX to build out the components in a modular fashion.
 - Uses React Router to set up your routes.
-- Uses Axios to fetch data from your REST API asybcronously.
+- Uses Axios to fetch data from the courses REST API asynchronously.
 - Allows users to sign up and use basic authentication to support signing in.
 - Has custom CSS styling to personalize the project.
 
