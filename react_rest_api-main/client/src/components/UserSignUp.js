@@ -120,7 +120,8 @@ export default class UserSignUp extends Component {
           console.log(err);
           this.props.history.push('/error'); // render the error page
         });
-      //send the user to the signup page if the user is not created successfully.
+      //send the user to the signup page if the user is not created successfully.  This is necessary so that it unmounts the component, prevents errors and allows the 
+      //validation errors to be displayed.  Without this, componentDidUnmount would need to be used to prevent memory leaks.
       this.props.history.push('/signup');
       }
     
