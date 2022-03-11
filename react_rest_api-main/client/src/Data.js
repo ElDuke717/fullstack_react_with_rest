@@ -1,5 +1,6 @@
 import config from './config';
 
+//Data is where all the CRUD operations are handled.  This is where all the Form api calls are made.
 export default class Data {
   //requiresAuth and credentials have default values passed in case no values or undefined are passed for either of them
   api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {

@@ -1,5 +1,5 @@
 import React from 'react';
-
+//NotFound is rendered if the user tries to access a page that doesn't exist.
 const NotFound = () => {
     return (
         <div className="wrap">

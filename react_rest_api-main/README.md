@@ -1,14 +1,20 @@
 # Full Stack App with React and Rest API
-# Lifetime Learner Course Catalog
+# Lifetime Learner Course Catalog App
 
 ![glasses](client/src/components/glasses.png)
-### react_rest_api
+### fullstack_ react_with_rest
 
 ## This is Project 10 for the Treehouse Full Stack JavaScript TechDegree
 (the final project).
 
 ## Notes on the project:
-The client is running on `port 3000` and the API/server is running on `port 5000`.
+* The client is running on `port 3000` and the API/server is running on `port 5000`.
+* Several of the components are using the [React Router](https://reacttraining.com/react-router/web/guides/quick-start) library to navigate between pages.
+* The Context API is used to share data between components and avoid prop drilling.
+* The project has gone through development using current and older versions of dependencies.  Please see the package.json file for the current version of each dependency.
+* The project includes a mixture of both class and functional components.  I composed it this way so that I could learn and demonstrate abilities to use both, including hooks in functional components.
+* Notes have been added throughout the app so that it can be followed and understood by any audience, including future me.
+* The app has been tested in Chrome, Firefox, and Edge.
 
 ## About the project:
 

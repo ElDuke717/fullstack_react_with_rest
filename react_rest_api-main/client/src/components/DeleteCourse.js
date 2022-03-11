@@ -4,6 +4,8 @@ import { Context } from "../Context";
 import axios from "axios";
 import Forbidden from './Forbidden';
 
+//DeleteCourse is resposible for rendering the delete course page AND handling the delete course process.  It pulls the specific course data from the API, matches the author id with the authenticatedUser id, and then passes the course data to the deleteCourse function in context.data.
+
 const DeleteCourse = () => {
     //Get context to verity the authenticatedUser
     const context = useContext(Context);

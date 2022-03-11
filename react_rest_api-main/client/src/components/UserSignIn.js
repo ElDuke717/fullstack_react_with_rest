@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 
+//UserSignIn is a class component that renders the sign-in form.  See CreateCourse and Form Components to see how Form and render props work.
 export default class UserSignIn extends Component  {
   
   //constructor contains code to handle goBack functionality as part of history object.

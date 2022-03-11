@@ -3,7 +3,8 @@ import Form from './Form';
 
 export default class CreateCourse extends Component {
    
-   state = { 
+   //state is set initialliy to empty values and the values are updated when the user enters data into the form.
+    state = { 
         title:'',
         description:'',
         estimatedTime:'',
@@ -34,6 +35,7 @@ export default class CreateCourse extends Component {
             errors={errors}
             submit={this.submit}
             submitButtonText="Create"
+            // A render prop is used for the form across components to make the code more concise and consistent across views.
             elements={() => (
                 <React.Fragment>
                 <div className="main--flex">

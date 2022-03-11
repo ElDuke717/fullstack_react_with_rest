@@ -3,6 +3,8 @@ import { useHistory  } from "react-router-dom";
 import Course from './Course'
 import axios from 'axios';
 
+//Courses displays the courses that are saved in the database.  The courses are mapped over using the Course component.  API calls are made directly from this component.
+
 const Courses = () => {
     //useState sets the state for the Courses component.  setCourses is called when the axios call is made to the server and the response is saved into the state.
     const [ courses, setCourses ] = useState([]);

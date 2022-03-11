@@ -64,6 +64,7 @@ const CourseDetail = (props) => {
             <div className="actions--bar">
                 <div className="wrap">
                 {    
+                    //if the authenticatedUser is not null and authenticatedUser Id matches the userId for the course, then the user is logged in and the following buttons are rendered
                     userId === authId ?
                     <span>
                     <Link className="button" to={{pathname:`/courses/${id}/update`}}>Update Course </Link>

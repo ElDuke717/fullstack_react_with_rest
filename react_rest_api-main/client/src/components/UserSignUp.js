@@ -4,6 +4,7 @@ import Form from './Form'
 
 //state - firstName, lastName, emailAddress, password, errors
 
+//UserSignUp is a class component that renders the sign-up form.  See CreateCourse and Form Components to see how Form and render props work.
 export default class UserSignUp extends Component {
     state = { 
       firstName:'',
