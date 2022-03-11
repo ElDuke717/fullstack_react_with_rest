@@ -108,16 +108,20 @@ export default class UserSignUp extends Component {
           this.setState({ errors });
         } else {
           //If the response from Data.js returns no errors or an empty array, it means the user was created successfully.
-          this.props.history.push('/signin');
+          //The user is logged in after successfully creating an account.
+          context.actions.signIn(emailAddress, password) 
+          .then(() => {
+            this.props.history.push('/');    
+          });      
           console.log(`${firstName} ${lastName} has been created!`);
           };
         })
         .catch( err => { //handle rejected promises
           console.log(err);
-          this.props.history.push('/error'); //push the error to the history stack and render the error page
+          this.props.history.push('/error'); // render the error page
         });
-      //send the user to the signin page after account has been successfully created
-      this.props.history.push('/')
+      //send the user to the signup page if the user is not created successfully.
+      this.props.history.push('/signup');
       }
     
       cancel = () => {

@@ -35,6 +35,7 @@ const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 const DeleteCourseWithAuthentication = withContext(DeleteCourse);
 
+//App primarily provides routing around the app for different views.
 const App = () => (
     <Router>
       <div> 

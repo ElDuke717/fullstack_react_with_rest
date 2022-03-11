@@ -10,11 +10,13 @@ const Form = (props) => {
     submitButtonText,
     elements,
   } = props;
+  
   //calls the submit function on each CRUD view, e.g. CreateCourse.js, DeleteCourse.js, UpdateCourse.js and those for authentication, UserSignUp.js and UserSignIn.js.
   function handleSubmit(event) {
     event.preventDefault();
     submit();
   }
+  
   //calls the cancel function on each form view.
   function handleCancel(event) {
     event.preventDefault();
