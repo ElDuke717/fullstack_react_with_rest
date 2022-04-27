@@ -1,4 +1,6 @@
 # Full Stack App with React and Rest API
+## Note: this project is being used for the API, the client is now in a separate repo (4/27/2022)
+
 # Lifetime Learner Course Catalog App
 
 ![glasses](client/src/components/glasses.png)
